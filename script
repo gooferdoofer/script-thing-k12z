@@ -22,10 +22,11 @@ sidebar.innerHTML = `
   <br><br>
   <button onclick=\"closeItNOW()\" style=\"background-color: white;\">close</button>
   <br><br>
-  <button onclick=\"IDGrab();console.log('Got ID')\" style=\"background-color: white;\">regrab Auth Token (use if scripts aren't working)</button>
+  <button onclick=\"IDGrab();console.log('Got ID')\" style=\"background-color: white;\">Re-Grab Auth Token (use if scripts aren't working)</button>
   <br><br>
   <button onclick=\"Status()\" style=\"background-color: white;\">status change toggle</button>
   <br><br>
+  <button onclick=\"StatusNothing()\" style=\"background-color: white;\">Fake Offline</button>
 `;
 Object.assign(sidebar.style,{
   position: "fixed",
@@ -43,7 +44,7 @@ document.body.appendChild(sidebar);
 document.documentElement.style.marginRight= "200px";
 closeItNOW=()=>{
   clearInterval(this.idstatus);
-  sidebar.style.visibility = "hidden";
+  sidebar.remove();
   document.documentElement.style.marginRight = "0px"
 };
 Status=()=>{
@@ -54,3 +55,22 @@ Status=()=>{
     clearInterval(idstatus),statusScript1 = 0
   }
 };
+StatusNothing=()=>{
+fetch("https://zone-internal.k12.com/api/user-status", {
+  "headers": {
+    "accept": "application/json, text/plain, */*",
+    "accept-language": "en-US,en;q=0.9",
+    "authorization": ID,
+    "content-type": "application/json",
+    "priority": "u=1, i",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "Referer": "https://zone.k12.com/"
+  },
+  "body": "{\"status\":\"\"}",
+  "method": "PATCH"
+});
+}
