@@ -1,0 +1,56 @@
+statusScript1 = 0;
+IDGrab = () => {
+  f=indexedDB.open('firebaseLocalStorageDb');
+  f.onerror=e=>{
+    console.error('Error opening DB:',e)
+  };
+  f.onsuccess=e=>{
+    d=e.target.result;t=d.transaction(["firebaseLocalStorage"]);
+    o=t.objectStore("firebaseLocalStorage");
+    a=o.get('firebase:authUser:AIzaSyBiA_uzPP_ME10V_aZTwsZbKFE5gqTfKec:[DEFAULT]');
+    a.onerror=e=>{
+      console.error('Error getting key:',e)
+    };a.onsuccess=e=>{
+      ID = a.result.value.stsTokenManager.accessToken
+    }
+  }
+};
+IDGrab();
+sidebar=document.createElement("div");
+sidebar.innerHTML = "
+  <h1>hi :3 here's your scripts! if you see this it OBVIOUSLY worked, which is lovely (also, do NOT close the menu or else all scripts will be shut off so nothing breaks)</h1 style=\"font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\">
+  <br><br>
+  <button onclick=\"closeItNOW()\" style=\"background-color: white;\">close</button>
+  <br><br>
+  <button onclick=\"IDGrab();console.log('Got ID')\" style=\"background-color: white;\">regrab Auth Token (use if scripts aren't working)</button>
+  <br><br>
+  <button onclick=\"Status()\" style=\"background-color: white;\">status change toggle</button>
+  <br><br>
+";
+Object.assign(sidebar.style,{
+  position: "fixed",
+  top: "0",
+  right: "0",
+  width: "200px",
+  height: "100vh",
+  background: "#222",
+  color: "white",
+  zIndex: "999999",
+  padding: "20px",
+  boxSizing: "border-box"
+});
+document.body.appendChild(sidebar);
+document.documentElement.style.marginRight= "200px";
+closeItNOW=()=>{
+  clearInterval(this.idstatus);
+  sidebar.style.visibility = "hidden";
+  document.documentElement.style.marginRight = "0px"
+};
+Status=()=>{
+  if (statusScript1 == 0) {
+    idstatus = setInterval(()=>{fetch("https://zone-internal.k12.com/api/user-status", {"headers": {"accept": "application/json, text/plain, */*","accept-language": "en-US,en;q=0.9","authorization": ID,"content-type": "application/json","priority": "u=1, i","sec-ch-ua-mobile": "?0","sec-ch-ua-platform": "\"Windows\"","sec-fetch-dest": "empty","sec-fetch-mode": "cors","sec-fetch-site": "same-site","Referer": "https://zone.k12.com/"  },  "body": "{\"status\":\"" + ['AVAILABLE','BUSY','DO_NOT_DISTURB',''][Math.min(Math.floor(Math.random()*5),4)] + "\"}",  "method": "PATCH"});}, 100);
+    statusScript1=1
+  } else if (statusScript1 == 1) {
+    clearInterval(idstatus),statusScript1 = 0
+  }
+};
