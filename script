@@ -42,9 +42,10 @@ Object.assign(sidebar.style,{
 });
 document.body.appendChild(sidebar);
 document.documentElement.style.marginRight= "200px";
+sidebar.id = "SIDEBAR";
 closeItNOW=()=>{
   clearInterval(this.idstatus);
-  sidebar.remove();
+  (document.getElementById("mySidebar")).remove();
   document.documentElement.style.marginRight = "0px"
 };
 Status=()=>{
