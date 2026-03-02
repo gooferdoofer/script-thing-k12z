@@ -30,6 +30,8 @@ IDGrab();
   <br><br>
   <button onclick=\"StatusNothing()\" style=\"background-color: white;\">Fake Offline</button>
   <br><br>
+  <button onclick=\"StatusNothing2()\" style=\"background-color: white;\">Fake Offline 2</button>
+  <br><br>
   <button onclick=\"JoinGameRandom()\" style=\"background-color: white;\">Clone Self (random position, WILL kick you out)</button>
   <br><br>
   <button onclick=\"JoinGamePosition()\" style=\"background-color: white;\">Clone Self (your position, WILL kick you out)</button>
@@ -78,6 +80,25 @@ fetch("https://zone-internal.k12.com/api/user-status", {
     "Referer": "https://zone.k12.com/"
   },
   "body": "{\"status\":\"OFFLINE\"}",
+  "method": "PATCH"
+});
+};
+StatusNothing2=()=>{
+fetch("https://zone-internal.k12.com/api/user-status", {
+  "headers": {
+    "accept": "application/json, text/plain, */*",
+    "accept-language": "en-US,en;q=0.9",
+    "authorization": ID,
+    "content-type": "application/json",
+    "priority": "u=1, i",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "Referer": "https://zone.k12.com/"
+  },
+  "body": "{\"status\":\"\"}",
   "method": "PATCH"
 });
 };
