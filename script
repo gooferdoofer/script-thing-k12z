@@ -37,7 +37,7 @@ IDGrab();
     width: "400px",
     height: "100vh",
     background: "black",
-    color: "green",
+    color: "greenyellow",
     zIndex: "999999",
     padding: "20px",
     boxSizing: "border-box",
