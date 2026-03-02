@@ -16,8 +16,9 @@ IDGrab = () => {
   }
 };
 IDGrab();
-sidebar=document.createElement("div");
-sidebar.innerHTML = `
+if (!this.sidebar) {
+  sidebar=document.createElement("div");
+  sidebar.innerHTML = `
   <h1>hi :3 here's your scripts! if you see this it OBVIOUSLY worked, which is lovely (also, do NOT close the menu or else all scripts will be shut off so nothing breaks)</h1>
   <br><br>
   <h1>Version BETA, BETA, BETAAAAAAAAAAAA</h1>
@@ -30,25 +31,25 @@ sidebar.innerHTML = `
   <br><br>
   <button onclick=\"StatusNothing()\" style=\"background-color: white;\">Fake Offline</button>
 `;
-Object.assign(sidebar.style,{
-  position: "fixed",
-  top: "0",
-  right: "0",
-  width: "200px",
-  height: "100vh",
-  background: "black",
-  color: "green",
-  zIndex: "999999",
-  padding: "20px",
-  boxSizing: "border-box",
-  fontFamily: "font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
-});
-document.body.appendChild(sidebar);
-document.documentElement.style.marginRight= "200px";
-sidebar.id = "SIDEBAR";
+  Object.assign(sidebar.style,{
+    position: "fixed",
+    top: "0",
+    right: "0",
+    width: "200px",
+    height: "100vh",
+    background: "black",
+    color: "green",
+    zIndex: "999999",
+    padding: "20px",
+    boxSizing: "border-box",
+    fontFamily: "font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+  });
+  document.body.appendChild(sidebar);
+  document.documentElement.style.marginRight= "200px";
+}
 closeItNOW=()=>{
   clearInterval(this.idstatus);
-  (document.getElementById("mySidebar")).remove();
+  sidebar.remove();
   document.documentElement.style.marginRight = "0px"
 };
 Status=()=>{
