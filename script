@@ -154,6 +154,6 @@ Y = await X.json();
     "sec-fetch-site": "same-site",
     "Referer": "https://zone.k12.com/"
   },
-  "body": "{\"avatarId\":\"" + JSON.parse(localStorage.uiPreferences).avatarID + "\",\"color\":\"" + JSON.parse(localStorage.uiPreferences).avatarColor + ""\",\"height\":10000,\"isMobile\":true,\"isUsingTransport\":false,\"spawnAt\":" + localStorage.lastPosition + ",\"spawnPosition\":{\"y\":-1436,\"x\":-2755,\"radius\":100},\"uid\":\"\",\"username\":\"\",\"width\":12000,\"roomName\":\"national-zone-6-8\"}",
+  "body": "{\"avatarId\":\"" + JSON.parse(localStorage.uiPreferences).avatarID + "\",\"color\":\"" + JSON.parse(localStorage.uiPreferences).avatarColor + "\",\"height\":10000,\"isMobile\":true,\"isUsingTransport\":false,\"spawnAt\":" + localStorage.lastPosition + ",\"spawnPosition\":{\"y\":-1436,\"x\":-2755,\"radius\":100},\"uid\":\"\",\"username\":\"\",\"width\":12000,\"roomName\":\"national-zone-6-8\"}",
   "method": "POST"
 })})()};
