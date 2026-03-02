@@ -80,7 +80,7 @@ fetch("https://zone-internal.k12.com/api/user-status", {
 });
 };
 JoinGame=()=>{
-  
+  (async()=>{
 X = await fetch("https://zone.k12.com/api/auth/get-access-token", {
   "headers": {
     "accept": "application/json, text/plain, */*",
@@ -116,5 +116,4 @@ Y = await X.json();
   },
   "body": "{\"avatarId\":\"\",\"color\":\"0x" + Math.floor(Math.random()*16777215).toString(16).padStart(6, "0") + "\",\"height\":10000,\"isMobile\":true,\"isUsingTransport\":false,\"spawnAt\":{\"x\":" + (Math.random()*10000 - 5000) + ",\"y\":" + (Math.random()*10000 - 5000) + "},\"spawnPosition\":{\"y\":-1436,\"x\":-2755,\"radius\":100},\"uid\":\"\",\"username\":\"\",\"width\":12000,\"roomName\":\"national-zone-6-8\"}",
   "method": "POST"
-})
-};
+})})()};
