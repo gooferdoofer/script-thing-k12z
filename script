@@ -95,7 +95,7 @@ X = await fetch("https://zone.k12.com/api/auth/get-access-token", {
     "sec-fetch-site": "same-origin",
     "Referer": "https://zone.k12.com/national-zone-6-8"
   },
-  "body": "{\"displayName\":\"\",\"emailCaptureConsent\":false,\"emailToCapture\":\"\",\"password\":\"\",\"samlTokenId\":\"" + ID + "\",\"roomName\":\"national-zone-6-8\"}",
+  "body": "{\"displayName\":\"JSON.parse(localStorage.displayName)\",\"emailCaptureConsent\":false,\"emailToCapture\":\"\",\"password\":\"\",\"samlTokenId\":\"" + ID + "\",\"roomName\":\"national-zone-6-8\"}",
   "method": "POST"
 });
 Y = await X.json();
