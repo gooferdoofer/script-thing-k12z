@@ -18,7 +18,7 @@ IDGrab = () => {
 IDGrab();
 sidebar=document.createElement("div");
 sidebar.innerHTML = `
-  <h1>hi :3 here's your scripts! if you see this it OBVIOUSLY worked, which is lovely (also, do NOT close the menu or else all scripts will be shut off so nothing breaks)</h1 style=\"font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\">
+  <h1>hi :3 here's your scripts! if you see this it OBVIOUSLY worked, which is lovely (also, do NOT close the menu or else all scripts will be shut off so nothing breaks)</h1>
   <br><br>
   <h1>Version BETA, BETA, BETAAAAAAAAAAAA</h1>
   <br><br>
@@ -36,11 +36,12 @@ Object.assign(sidebar.style,{
   right: "0",
   width: "200px",
   height: "100vh",
-  background: "#222",
-  color: "white",
+  background: "black",
+  color: "green",
   zIndex: "999999",
   padding: "20px",
-  boxSizing: "border-box"
+  boxSizing: "border-box",
+  fontFamily: "font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
 });
 document.body.appendChild(sidebar);
 document.documentElement.style.marginRight= "200px";
