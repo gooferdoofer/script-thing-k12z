@@ -30,7 +30,9 @@ IDGrab();
   <br><br>
   <button onclick=\"StatusNothing()\" style=\"background-color: white;\">Fake Offline</button>
   <br><br>
-  <button onclick=\"JoinGame()\" style=\"background-color: white;\">Clone Self</button>
+  <button onclick=\"JoinGameRandom()\" style=\"background-color: white;\">Clone Self (random position, WILL kick you out)</button>
+  <br><br>
+  <button onclick=\"JoinGamePosition()\" style=\"background-color: white;\">Clone Self (your position, WILL kick you out)</button>
 `;
   Object.assign(sidebar.style,{
     position: "fixed",
@@ -79,7 +81,7 @@ fetch("https://zone-internal.k12.com/api/user-status", {
   "method": "PATCH"
 });
 };
-JoinGame=()=>{
+JoinGameRandom=()=>{
   (async()=>{
 X = await fetch("https://zone.k12.com/api/auth/get-access-token", {
   "headers": {
@@ -115,5 +117,43 @@ Y = await X.json();
     "Referer": "https://zone.k12.com/"
   },
   "body": "{\"avatarId\":\"\",\"color\":\"0x" + Math.floor(Math.random()*16777215).toString(16).padStart(6, "0") + "\",\"height\":10000,\"isMobile\":true,\"isUsingTransport\":false,\"spawnAt\":{\"x\":" + (Math.random()*10000 - 5000) + ",\"y\":" + (Math.random()*10000 - 5000) + "},\"spawnPosition\":{\"y\":-1436,\"x\":-2755,\"radius\":100},\"uid\":\"\",\"username\":\"\",\"width\":12000,\"roomName\":\"national-zone-6-8\"}",
+  "method": "POST"
+})})()};
+JoinGamePosition=()=>{
+  (async()=>{
+X = await fetch("https://zone.k12.com/api/auth/get-access-token", {
+  "headers": {
+    "accept": "application/json, text/plain, */*",
+    "accept-language": "en-US,en;q=0.9",
+    "authorization": ID,
+    "content-type": "application/json",
+    "priority": "u=1, i",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "Referer": "https://zone.k12.com/national-zone-6-8"
+  },
+  "body": "{\"displayName\":\"JSON.parse(localStorage.displayName)\",\"emailCaptureConsent\":false,\"emailToCapture\":\"\",\"password\":\"\",\"samlTokenId\":\"" + ID + "\",\"roomName\":\"national-zone-6-8\"}",
+  "method": "POST"
+});
+Y = await X.json();
+  fetch("https://zone-state.k12.com/api/simple-server/national-zone-6-8/join-game", {
+  "headers": {
+    "accept": "application/json, text/plain, */*",
+    "accept-language": "en-US,en;q=0.9",
+    "authorization": ID,
+    "authorizationtoken": Y.token,
+    "content-type": "application/json",
+    "priority": "u=1, i",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "Referer": "https://zone.k12.com/"
+  },
+  "body": "{\"avatarId\":\"\",\"color\":\"0x" + Math.floor(Math.random()*16777215).toString(16).padStart(6, "0") + "\",\"height\":10000,\"isMobile\":true,\"isUsingTransport\":false,\"spawnAt\""+ localStorage.lastPosition + ",\"spawnPosition\":{\"y\":-1436,\"x\":-2755,\"radius\":100},\"uid\":\"\",\"username\":\"\",\"width\":12000,\"roomName\":\"national-zone-6-8\"}",
   "method": "POST"
 })})()};
