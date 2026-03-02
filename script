@@ -34,7 +34,7 @@ IDGrab();
     position: "fixed",
     top: "0",
     right: "0",
-    width: "400px",
+    width: "300px",
     height: "100vh",
     background: "black",
     color: "greenyellow",
@@ -44,7 +44,7 @@ IDGrab();
     fontFamily: "font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
   });
 document.body.appendChild(sidebar);
-document.documentElement.style.marginRight= "400px";
+document.documentElement.style.marginRight= "300px";
 closeItNOW=()=>{
   clearInterval(this.idstatus);
   sidebar.remove();
