@@ -178,4 +178,27 @@ Y = await X.json();
   "body": "{\"avatarId\":\"" + JSON.parse(localStorage.uiPreferences).avatarId + "\",\"color\":\"" + JSON.parse(localStorage.uiPreferences).avatarColor + "\",\"height\":10000,\"isMobile\":true,\"isUsingTransport\":false,\"spawnAt\":" + localStorage.lastPosition + ",\"spawnPosition\":{\"y\":-1436,\"x\":-2755,\"radius\":100},\"uid\":\"\",\"username\":\"\",\"width\":12000,\"roomName\":\"national-zone-6-8\"}",
   "method": "POST"
 })})()};
-grabID2=async()=>{const X=await fetch("https://zone.k12.com/api/auth/get-access-token",{headers:{accept:"application/json,text/plain,*/*","accept-language":"en-US,en;q=0.9",authorization:ID,"content-type":"application/json",Referer:"https://zone.k12.com/national-zone-6-8"},body:"{\"displayName\":\""+JSON.parse(localStorage.displayName)+"\",\"emailCaptureConsent\":false,\"emailToCapture\":\"\",\"password\":\"\",\"samlTokenId\":\""+ID+"\",\"roomName\":\"national-zone-6-8\"}",method:"POST"});const Y=await X.json();const joinRes=await fetch("https://zone-state.k12.com/api/simple-server/national-zone-6-8/join-game",{headers:{accept:"application/json,text/plain,*/*","accept-language":"en-US,en;q=0.9",authorization:ID,authorizationtoken:Y.token,"content-type":"application/json",Referer:"https://zone.k12.com/"},body:"{\"avatarId\":\""+JSON.parse(localStorage.uiPreferences).avatarId+"\",\"color\":\""+JSON.parse(localStorage.uiPreferences).avatarColor+"\",\"height\":10000,\"isMobile\":true,\"isUsingTransport\":false,\"spawnAt\":"+localStorage.lastPosition+",\"spawnPosition\":{\"y\":-1436,\"x\":-2755,\"radius\":100},\"uid\":\"\",\"username\":\"\",\"width\":12000,\"roomName\":\"national-zone-6-8\"}",method:"POST"});const Z=await joinRes.json();return Z.you?.playerId};
+grabID2=async()=>{const X=await fetch("https://zone.k12.com/api/auth/get-access-token",{headers:{accept:"application/json,text/plain,*/*","accept-language":"en-US,en;q=0.9",authorization:ID,"content-type":"application/json",Referer:"https://zone.k12.com/national-zone-6-8"},body:"{\"displayName\":\""+JSON.parse(localStorage.displayName)+"\",\"emailCaptureConsent\":false,\"emailToCapture\":\"\",\"password\":\"\",\"samlTokenId\":\""+ID+"\",\"roomName\":\"national-zone-6-8\"}",method:"POST"});const Y=await X.json();const joinRes=await fetch("https://zone-state.k12.com/api/simple-server/national-zone-6-8/join-game",{headers:{accept:"application/json,text/plain,*/*","accept-language":"en-US,en;q=0.9",authorization:ID,authorizationtoken:Y.token,"content-type":"application/json",Referer:"https://zone.k12.com/"},body:"{\"avatarId\":\""+JSON.parse(localStorage.uiPreferences).avatarId+"\",\"color\":\""+JSON.parse(localStorage.uiPreferences).avatarColor+"\",\"height\":10000,\"isMobile\":true,\"isUsingTransport\":false,\"spawnAt\":"+localStorage.lastPosition+",\"spawnPosition\":{\"y\":-1436,\"x\":-2755,\"radius\":100},\"uid\":\"\",\"username\":\"\",\"width\":12000,\"roomName\":\"national-zone-6-8\"}",method:"POST"});const Z=await joinRes.json();return Z};
+getPlayers=async()=>{
+Z = await grabID2();Y = await fetch("https://zone-state.k12.com/api/simple-server/national-zone-6-8/get-players", {
+    "credentials": "omit",
+    "headers": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:148.0) Gecko/20100101 Firefox/148.0",
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Content-Type": "application/json",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-site",
+        "authorization": ID,
+        "Pragma": "no-cache",
+        "Cache-Control": "no-cache"
+    },
+    "referrer": "https://zone.k12.com/",
+    "body": "{\"gameId\":\"national-zone-6-8\",\"id\":" + Z.you?.playerId + ",\"nonce\":\"" + Z.you?.nonce + "\",\"roomName\":\"national-zone-6-8\"}",
+    "method": "POST",
+    "mode": "cors"
+});Y = await Y.json();
+playersArray = Object.values(Y.players);
+return playersArray;
+}
